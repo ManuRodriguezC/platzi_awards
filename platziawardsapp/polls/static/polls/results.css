@@ -1,0 +1,18 @@
+h1, h2 {
+    background: linear-gradient(
+        hsl(182, 100%, 65%),
+        hsl(220, 100%, 59%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+a {
+    margin-left: 100px;
+    color: hsl(206, 100%, 59%);
+}
+
+a:hover {
+    color: hsl(206, 100%, 28%);
+}

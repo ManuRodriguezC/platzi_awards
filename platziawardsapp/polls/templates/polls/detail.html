@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ question.question_text }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href={% static 'polls/style.css' %}>
+        <link rel="stylesheet" href={% static 'polls/detail.css' %}>
+    </head>
+    <body>
+        <main>
+            <form action="{% url 'polls:vote' question.id %}" method="post">
+                {% csrf_token %}
+                
+                <fieldset>
+                    <legend><h1>{{ question.question_text }}</h1></legend>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    
+                    {% for choice in question.choice_set.all %}
+                        <input
+                            type="radio"
+                            name="choice"
+                            id="choice{{ forloop.counter }}"
+                            value="{{choice.id}}">
+                        </input>
+                        <label for="choice{{ forloop.counter }}">
+                            {{ choice.choice_text }}
+                        </label>
+                        <br>
+                    {% endfor %}
+                </fieldset>
+                <input type="submit" value="Votar"></input>
+                </form>
+        </main>
+    </body>
+</html>
